@@ -1,0 +1,26 @@
+ext {
+    //module是否作为application单独运行
+    isModule = true
+
+    //签名配置
+    signingConfig = [
+            storePassword: 'aijia',
+            keyAlias     : 'Aijia',
+            keyPassword  : 'aijia'
+    ]
+
+    android = [
+            applicationId    : 'com.aijia.android',
+
+            //使用ExoPlayer编译版本需要到33，而33中有bug,xml写代码没有代码提示
+            compileSdk       : 33,
+            buildToolsVersion: '33.0.0',
+            minSdk           : 24,
+            targetSdk        : 33,
+
+            versionCode      : 1,
+            versionName      : '1.0.1'
+    ]
+
+}
+
