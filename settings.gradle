@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "AijiaAndroid"
 include ':app'
 include ':lib_network'
+include ':mod_login'
