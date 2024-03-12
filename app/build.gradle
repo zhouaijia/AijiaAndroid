@@ -5,16 +5,31 @@ plugins {
 
 android {
     namespace 'com.aijia.android'
-    compileSdk 33
+    compileSdk rootProject.android.compileSdk
 
     defaultConfig {
-        applicationId "com.aijia.android"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.android.applicationId
+        minSdk rootProject.android.minSdk
+        targetSdk rootProject.android.targetSdk
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(rootProject.signingConfig.storeFile)
+            storePassword rootProject.signingConfig.storePassword
+            keyAlias rootProject.signingConfig.keyAlias
+            keyPassword rootProject.signingConfig.keyPassword
+        }
+        release {
+            storeFile file(rootProject.signingConfig.storeFile)
+            storePassword rootProject.signingConfig.storePassword
+            keyAlias rootProject.signingConfig.keyAlias
+            keyPassword rootProject.signingConfig.keyPassword
+        }
     }
 
     buildTypes {

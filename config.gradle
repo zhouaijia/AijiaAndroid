@@ -4,9 +4,10 @@ ext {
 
     //签名配置
     signingConfig = [
-            storePassword: 'aijia',
+            storeFile    : '../signature/AijiaAndroid.jks',
+            storePassword: 'aijia123456',
             keyAlias     : 'Aijia',
-            keyPassword  : 'aijia'
+            keyPassword  : 'aijia123456'
     ]
 
     android = [

@@ -6,6 +6,7 @@ plugins {
 }
 
 apply from: this.rootProject.file('config.gradle')
+apply from: this.rootProject.file('common.gradle')
 
 /*
 task clean(type: Delete) {

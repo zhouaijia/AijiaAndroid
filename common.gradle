@@ -1,0 +1,37 @@
+/************************************************************
+ * 常用功能的实现
+ ************************************************************/
+
+ext {
+    /**
+     从电脑本地文件中获取指定key对应的value，使用默认的文件路径。
+     这里使用的是项目根目录下的sign.properties文件，也可以使用其它路
+     径下的properties文件，如 'D:\\devTools\\sign.properties'。
+     使用方法如下：
+     signingConfigs {
+         release {
+             try {
+                 storeFile file(getSignDataFromConfigFile("KEYSTORE"))
+                 storePassword getSignDataFromConfigFile("STOREPASSWORD")
+                 keyAlias getSignDataFromConfigFile("KEYALIAS")
+                 keyPassword getSignDataFromConfigFile("KEYPASSWORD")
+             } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+             }
+         }
+     }
+     */
+    def getSignDataFromConfigFile = { key->
+        return getPropertyFromLocalFile(key, '../signature/sign.properties')
+    }
+
+    //从电脑本地文件中获取指定key对应的value，使用指定的文件路径
+    def getPropertyFromLocalFile = { key, path ->
+        File file = project.rootProject.file(path)
+        if (file.exists()) {
+            Properties properties = new Properties()
+            properties.load(file.newDataInputStream())
+            return properties.getProperty(key)
+        }
+    }
+}
