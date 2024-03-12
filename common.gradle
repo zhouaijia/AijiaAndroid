@@ -4,7 +4,7 @@
 
 ext {
     /**
-     从电脑本地文件中获取指定key对应的value，使用默认的文件路径。
+     从电脑本地文件中获取签名相关的数据，使用默认的文件路径。
      这里使用的是项目根目录下的sign.properties文件，也可以使用其它路
      径下的properties文件，如 'D:\\devTools\\sign.properties'。
      使用方法如下：
@@ -24,14 +24,49 @@ ext {
     def getSignDataFromConfigFile = { key->
         return getPropertyFromLocalFile(key, '../signature/sign.properties')
     }
+}
 
-    //从电脑本地文件中获取指定key对应的value，使用指定的文件路径
-    def getPropertyFromLocalFile = { key, path ->
-        File file = project.rootProject.file(path)
-        if (file.exists()) {
-            Properties properties = new Properties()
-            properties.load(file.newDataInputStream())
-            return properties.getProperty(key)
-        }
+//从电脑本地文件中获取指定key对应的value，使用指定的文件路径
+def getPropertyFromLocalFile( key, path) {
+    File file = project.rootProject.file(path)
+    if (file.exists()) {
+        Properties properties = new Properties()
+        properties.load(file.newDataInputStream())
+        return properties.getProperty(key)
+    }
+}
+
+//壳模块中的strings.xml中只有app_name字段，可以直接覆写
+def replaceAppName(appName) {
+    def valuesDir = file("src/main/res/values")
+    if (!valuesDir.exists()) {
+        mkdir(valuesDir)
+    }
+
+    def stringsFile = file("src/main/res/values/strings.xml")
+
+    def stringsText = new StringBuilder()
+    stringsText.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+    stringsText.append("<resources>\n")
+    stringsText.append("    <string name=\"app_name\" translatable=\"false\">${appName}</string>\n")
+    stringsText.append("</resources>")
+
+    stringsFile.write(stringsText.toString())
+}
+
+//从服务端下载app launcher图标，替换掉项目中的图标
+def replaceAppLauncherIcon(launcherUrl) {
+    //mipmap-xxxhdpi
+    download {
+        src launcherUrl
+        dest file("src/main/res/mipmap-xxxhdpi/ic_launcher.png")
+    }
+}
+
+//从服务端下载app logo图标，替换掉项目中的logo图标
+def replaceAppLogo(logoUrl) {
+    download {
+        src logoUrl
+        dest file("src/main/res/mipmap-xxxhdpi/ic_logo.png")
     }
 }
