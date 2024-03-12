@@ -23,5 +23,89 @@ ext {
             versionName      : '1.0.1'
     ]
 
+    libVersion = [
+            multidexVersion       : '2.0.1',
+            retrofitVersion       : '2.9.0',
+            retrofitGsonVersion   : '2.4.0',
+            okhttp3LogVersion     : '3.11.0',
+            gsonVersion           : '2.10.1',
+            mmkvVersion           : '1.2.15',
+            refreshVersion        : '2.0.5',
+            glideVersion          : '4.15.0',
+            flexboxVersion        : '3.0.0',
+            aroutreApiVersion     : '1.5.2',
+            arouterCompilerVersion: '1.5.2',
+            tbssdkVersion         : '44132',
+            exoPlayerVersion      : '2.18.5',
+            permissionsVersion    : '0.12',
+            roomVersion           : '2.5.0',
+            rxjavaVersion         : '3.1.6',
+            rxandroidVersion      : '3.0.2',
+            cameraxVersion        : '1.3.0-alpha04',
+    ]
+
+    depsLibs = [
+            coreKtx           : 'androidx.core:core-ktx:1.7.0',
+            appcompat         : 'androidx.appcompat:appcompat:1.6.1',
+            material          : 'com.google.android.material:material:1.8.0',
+            constraintlayout  : 'androidx.constraintlayout:constraintlayout:2.1.4',
+            liveDataKtx       : 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1',
+            viewModelKtx      : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1',
+            navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.5.3',
+            navigationUI      : 'androidx.navigation:navigation-ui-ktx:2.5.3',
+            lifecycleCommon   : 'androidx.lifecycle:lifecycle-common:2.5.0-beta01',
+
+
+            junit             : 'junit:junit:4.13.2',
+            extJunit          : 'androidx.test.ext:junit:1.1.5',
+            espressoCore      : 'androidx.test.espresso:espresso-core:3.5.1',
+
+            multidex          : "androidx.multidex:multidex:${libVersion["multidexVersion"]}",
+
+            //room数据库
+            roomKtx           : "androidx.room:room-ktx:${libVersion["roomVersion"]}",
+            roomCompiler      : "androidx.room:room-compiler:${libVersion["roomVersion"]}",
+
+            //网络请求
+            retrofit2         : "com.squareup.retrofit2:retrofit:${libVersion["retrofitVersion"]}",
+            retrofit2Gson     : "com.squareup.retrofit2:converter-gson:${libVersion["retrofitGsonVersion"]}",
+            //日志打印
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${libVersion["okhttp3LogVersion"]}",
+
+            gson              : "com.google.code.gson:gson:${libVersion["gsonVersion"]}",
+            //xlog              : "com.tencent.mars:mars-xlog:1.2.5",
+            //数据存储
+            mmkv              : "com.tencent:mmkv:${libVersion["mmkvVersion"]}",
+
+            //下拉刷新
+            refreshLayout     : "io.github.scwang90:refresh-layout-kernel:${libVersion["refreshVersion"]}",
+            refreshHeader     : "io.github.scwang90:refresh-header-classics:${libVersion["refreshVersion"]}",
+            refreshFooter     : "io.github.scwang90:refresh-footer-classics:${libVersion["refreshVersion"]}",
+
+            //图片加载
+            glide             : "com.github.bumptech.glide:glide:${libVersion["glideVersion"]}",
+            glideCompiler     : "com.github.bumptech.glide:compiler:${libVersion["glideVersion"]}",
+
+            //流式布局
+            flexbox           : "com.google.android.flexbox:flexbox:${libVersion["flexboxVersion"]}",
+
+            //路由
+            aroutreApi        : "com.alibaba:arouter-api:${libVersion["aroutreApiVersion"]}",
+            arouterCompiler   : "com.alibaba:arouter-compiler:${libVersion["arouterCompilerVersion"]}",
+
+            //腾讯X5
+            tbssdk            : "com.tencent.tbs:tbssdk:${libVersion["tbssdkVersion"]}",
+
+            //ExoPlayer播放器
+            exoPlayer         : "com.google.android.exoplayer:exoplayer:${libVersion["exoPlayerVersion"]}",
+
+            //相机
+            cameraX           : "androidx.camera:camera-camera2:${libVersion["cameraxVersion"]}",
+
+            //权限处理
+            rxPermission      : "com.github.tbruyelle:rxpermissions:${libVersion["permissionsVersion"]}",
+            rxjava            : "io.reactivex.rxjava3:rxjava:${libVersion["rxjavaVersion"]}",
+            rxandroid         : "io.reactivex.rxjava3:rxandroid:${libVersion["rxandroidVersion"]}",
+    ]
 }
 
