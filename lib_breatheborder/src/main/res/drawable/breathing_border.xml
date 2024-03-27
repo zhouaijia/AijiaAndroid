@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<drawable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="com.aijia.breatheborder.BreathingBorderDrawable"  class="com.aijia.breatheborder.BreathingBorderDrawable">
+    <!-- 你可以在这里定义一些初始化属性，如颜色、大小等 -->
+</drawable>
