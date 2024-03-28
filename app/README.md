@@ -7,3 +7,4 @@
 6. APP主题等配置，这里需要注意Android 5.0和8.0的 全屏、沉浸式、窗口背景透明问题，需要增加values-v21、
 values-v26、values-v27文件夹做单独处理
 7. 前后台切换时，SplashActivity重复启动问题：启动模式若是singleTask就会重复启动，若是standard，则正常
+8. app壳模块和其它模块，都需要设置dataBinding=true，否则其它模块会报错（找不到DataBinderMapperImpl）
