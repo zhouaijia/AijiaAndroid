@@ -5,25 +5,25 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/nav_home">
 
-    <fragment
+    <fixFragment
         android:id="@+id/nav_home"
         android:name="com.aijia.main.ui.home.HomeFragment"
         android:label="@string/tab_home"
         tools:layout="@layout/fragment_home"/>
 
-    <fragment
+    <fixFragment
         android:id="@+id/nav_category"
         android:name="com.aijia.main.ui.category.CategoryFragment"
         android:label="@string/tab_categories"
         tools:layout="@layout/fragment_category"/>
 
-    <fragment
+    <fixFragment
         android:id="@+id/nav_system"
         android:name="com.aijia.main.ui.system.SystemFragment"
         android:label="@string/tab_system"
         tools:layout="@layout/fragment_system"/>
 
-    <fragment
+    <fixFragment
         android:id="@+id/nav_mine"
         android:name="com.aijia.main.ui.mine.MineFragment"
         android:label="@string/tab_mine"

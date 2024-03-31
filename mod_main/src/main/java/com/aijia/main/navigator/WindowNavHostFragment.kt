@@ -11,7 +11,9 @@ class WindowNavHostFragment: NavHostFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        val frameLayout = WindowFrameLayout(inflater.context)
+        frameLayout.id = id
+        return frameLayout
     }
 }

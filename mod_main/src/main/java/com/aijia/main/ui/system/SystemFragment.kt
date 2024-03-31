@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.aijia.log.ALog
 import com.aijia.main.R
 import com.aijia.main.ui.system.viewmodel.SystemViewModel
 
@@ -21,6 +22,7 @@ class SystemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        ALog.i("------------------体系--------------->onCreateView")
         return inflater.inflate(R.layout.fragment_system, container, false)
     }
 
