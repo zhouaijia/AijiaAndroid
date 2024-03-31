@@ -13,21 +13,20 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.aijia.framework.R
 import com.aijia.framework.databinding.WidgetTipsToastBinding
+import com.aijia.framework.utils.Utils
 
 object TipsToast {
 
     private var toast: Toast? = null
 
-    private lateinit var mContext: Application
+    private val mContext: Application by lazy {
+        Utils.getApp()
+    }
 
     private val mToastHandler = Looper.myLooper()?.let { Handler(it) }
 
     private val mBinding by lazy {
         WidgetTipsToastBinding.inflate(LayoutInflater.from(mContext), null, false)
-    }
-
-    fun init(context: Application) {
-        mContext = context
     }
 
     fun showTips(@StringRes stringId: Int) {
