@@ -33,7 +33,7 @@ ext {
             refreshVersion        : '2.0.5',
             glideVersion          : '4.15.0',
             flexboxVersion        : '3.0.0',
-            aroutreApiVersion     : '1.5.2',
+            arouterApiVersion     : '1.5.2',
             arouterCompilerVersion: '1.5.2',
             tbssdkVersion         : '44132',
             exoPlayerVersion      : '2.18.5',
@@ -91,7 +91,7 @@ ext {
             flexbox           : "com.google.android.flexbox:flexbox:${libVersion["flexboxVersion"]}",
 
             //路由
-            aroutreApi        : "com.alibaba:arouter-api:${libVersion["aroutreApiVersion"]}",
+            arouterApi        : "com.alibaba:arouter-api:${libVersion["arouterApiVersion"]}",
             arouterCompiler   : "com.alibaba:arouter-compiler:${libVersion["arouterCompilerVersion"]}",
 
             //腾讯X5

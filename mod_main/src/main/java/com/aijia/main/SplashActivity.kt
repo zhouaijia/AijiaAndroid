@@ -1,8 +1,8 @@
 package com.aijia.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.aijia.common.provider.MainServiceProvider
 import com.aijia.framework.base.BaseDataBindActivity
 import com.aijia.framework.ext.countDownCoroutines
 import com.aijia.framework.ext.onClick
@@ -16,8 +16,7 @@ class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
         StatusBarSettingHelper.setStatusBarTranslucent(this)
 
         mBinding.tvSkip.onClick {
-            //MainServiceProvider.toMain(this)
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            MainServiceProvider.toMain(this)
             finish()
         }
         //倒计时
@@ -25,8 +24,7 @@ class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
             mBinding.tvSkip.text = getString(R.string.splash_time, it.plus(1).toString())
         }) {
             if (!this@SplashActivity.isFinishing) {
-                //MainServiceProvider.toMain(this)
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                MainServiceProvider.toMain(this)
                 finish()
             }
         }

@@ -16,6 +16,12 @@ android {
         versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     signingConfigs {
@@ -72,7 +78,12 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
 
+    implementation rootProject.depsLibs.arouterApi
+    kapt rootProject.depsLibs.arouterCompiler
+
     implementation project(path: ':mod_main')
     //implementation project(path: ':mod_user')
     //implementation project(path: ':mod_login')
+    implementation project(path: ':lib_common')
+
 }

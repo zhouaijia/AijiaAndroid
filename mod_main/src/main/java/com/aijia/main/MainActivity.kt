@@ -1,5 +1,7 @@
 package com.aijia.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.navigation.NavController
@@ -10,6 +12,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.aijia.common.constant.KEY_INDEX
+import com.aijia.common.constant.MAIN_ACTIVITY_HOME
 import com.aijia.framework.base.BaseDataBindActivity
 import com.aijia.framework.toast.TipsToast
 import com.aijia.framework.utils.AppExit
@@ -19,11 +23,20 @@ import com.aijia.main.ui.category.CategoryFragment
 import com.aijia.main.ui.home.HomeFragment
 import com.aijia.main.ui.mine.MineFragment
 import com.aijia.main.ui.system.SystemFragment
+import com.alibaba.android.arouter.facade.annotation.Route
 
-
+@Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
     private lateinit var mNavController: NavController
+
+    companion object {
+        fun start(context: Context, index: Int) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(KEY_INDEX, index)
+            context.startActivity(intent)
+        }
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
 

@@ -26,6 +26,12 @@ android {
         minSdk rootProject.android.minSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
     }
 
     //模式切换时资源也同步切换
@@ -78,7 +84,10 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
 
+    compileOnly rootProject.depsLibs.arouterApi
+    kapt rootProject.depsLibs.arouterCompiler
+
     implementation project(':lib_framework')
-    implementation project(':lib_common')
+    compileOnly project(':lib_common')
     implementation project(':lib_log')
 }

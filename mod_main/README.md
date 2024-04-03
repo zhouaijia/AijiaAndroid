@@ -43,4 +43,4 @@
        BottomNavigationView.setupWithNavController(mNavController)
    改用 BottomNavigationView.setOnItemSelectedListener监听按钮点击事件，然后进行手动导航。
    优势：控制灵活，避免系统默认走setPopUpTo方法导致的IllegalArgumentException异常
-   缺点：不能使用系统提供的api，有点繁琐；可能有内存泄露的风险（FragmentManager中的mBackStack一直在变大）
+   缺点：不能使用系统提供的api，有点繁琐；可能有内存泄露的风险（FragmentManager中的mBackStack一直在变大）；导航按钮的动画不方便设置。
