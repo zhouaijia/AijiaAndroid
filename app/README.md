@@ -14,11 +14,12 @@ values-v26、values-v27文件夹做单独处理
    - No mapping files were found, check your configuration please
    - 或者使用@AutoWired注解注入失败
    - 新增页面之后，无法跳转
-   解决方案：
-   - 将App重新覆盖安装一遍，或卸载重装
-   - build.gradle中的混淆是否打开了，如果打开了，则ARouter相关的一些类是不可以混淆的
-   - 检查各个build.gradle文件中的ARouter配置是否正确
-   - Kotlin与Java版的ARouter配置是不一样的
-   - ARouter加载Dex中的映射文件会有一定耗时，所以ARouter会缓存映射文件，直到新版本升级(版本号或者versionCode变化)，
-     而如果是开发版本(ARouter.openDebug())， ARouter 每次启动都会重新加载映射文件，开发阶段一定要打开 Debug 功能
+
+  解决方案：
+  - 将App重新覆盖安装一遍，或卸载重装
+  - build.gradle中的混淆是否打开了，如果打开了，则ARouter相关的一些类是不可以混淆的
+  - 检查各个build.gradle文件中的ARouter配置是否正确
+  - Kotlin与Java版的ARouter配置是不一样的
+  - ARouter加载Dex中的映射文件会有一定耗时，所以ARouter会缓存映射文件，直到新版本升级(版本号或者versionCode变化)，
+    而如果是开发版本(ARouter.openDebug())， ARouter 每次启动都会重新加载映射文件，开发阶段一定要打开 Debug 功能
 
