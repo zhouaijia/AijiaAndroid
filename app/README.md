@@ -1,6 +1,6 @@
 ## APP壳工程：
-1. 自定义Application类，包含前后台切换监测、以Task形式初始化三方库、dex分包、异常拦截等功能
-2. 打包环境
+1. 自定义Application类，包含前后台切换监测、Activity生命周期监听、以Task形式初始化三方库、dex分包、异常拦截等功能
+2. 配置打包环境
 3. 签名
 4. 混淆规则
 5. 业务模块集成
@@ -23,3 +23,5 @@ values-v26、values-v27文件夹做单独处理
    - ARouter加载Dex中的映射文件会有一定耗时，所以ARouter会缓存映射文件，直到新版本升级(版本号或者versionCode变化)，
      而如果是开发版本(ARouter.openDebug())， ARouter 每次启动都会重新加载映射文件，开发阶段一定要打开 Debug 功能
 
+10. 项目编译时没有自动生成BuildConfig文件原因：Gradle 8.0默认不生成这个文件，若需要该文件，
+    须在gradle.properties文件中做配置：android.defaults.buildfeatures.buildconfig=true

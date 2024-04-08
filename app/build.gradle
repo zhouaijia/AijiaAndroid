@@ -78,12 +78,22 @@ dependencies {
     androidTestImplementation rootProject.depsLibs.extJunit
     androidTestImplementation rootProject.depsLibs.espressoCore
 
+    implementation rootProject.depsLibs.multidex
+
     implementation rootProject.depsLibs.arouterApi
     kapt rootProject.depsLibs.arouterCompiler
+
+    implementation rootProject.depsLibs.mmkv
+
+    implementation rootProject.depsLibs.refreshLayout
+    implementation rootProject.depsLibs.refreshHeader
+    implementation rootProject.depsLibs.refreshFooter
 
     implementation project(path: ':mod_main')
     //implementation project(path: ':mod_user')
     //implementation project(path: ':mod_login')
+    implementation project(path: ':lib_framework')
     implementation project(path: ':lib_common')
+    implementation project(path: ':lib_starter')
 
 }
