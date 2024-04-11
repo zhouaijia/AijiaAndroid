@@ -38,4 +38,7 @@ dependencies {
     implementation rootProject.depsLibs.appcompat
     implementation rootProject.depsLibs.gson
     implementation rootProject.depsLibs.recyclerview
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    compileOnly rootProject.depsLibs.tbssdk
 }

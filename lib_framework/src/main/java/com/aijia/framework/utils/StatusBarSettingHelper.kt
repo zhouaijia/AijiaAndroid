@@ -16,8 +16,8 @@ import com.aijia.framework.R
 import com.aijia.framework.utils.OSUtils.isEMUI3_x
 
 /**
- * @author mingyan.su
- * @date   2023/3/29 12:23
+ * @author Aijia
+ * @date   2024/3/15
  * @desc
  */
 object StatusBarSettingHelper {

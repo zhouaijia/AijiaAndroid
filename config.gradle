@@ -35,7 +35,7 @@ ext {
             flexboxVersion        : '3.0.0',
             arouterApiVersion     : '1.5.2',
             arouterCompilerVersion: '1.5.2',
-            tbssdkVersion         : '44132',
+            tbssdkVersion         : '44286',
             exoPlayerVersion      : '2.18.5',
             permissionsVersion    : '0.12',
             roomVersion           : '2.5.0',
