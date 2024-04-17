@@ -23,6 +23,39 @@ ext {
             versionName      : '1.0.1'
     ]
 
+    // web view
+    web = [
+            NATIVE        : "native",
+            X5            : "X5",
+
+            // App中默认使用的WebView类型：native、X5
+            // 若不使用WebView，须设置值为null
+            defWebView    : "X5",
+
+            // 有引用腾讯X5 SDK的代码
+            codeX5           : "X5WebView.java",
+    ]
+
+    /**
+     * App分发渠道：国内应用市场、GooglePlay
+     *
+     * 这里主要用于设置so动态链接库的abi、WebView
+     * 发布到GooglePlay的app，要求so必须包含所有的32位和64位；
+     * WebView必须使用Android系统自带的，不能是腾讯的X5 WebView
+     */
+    publishChannel = [
+            KEY_TARGET_CHANNEL      : "target_channel",
+            GOOGLEPLAY              : "GooglePlay",
+            CHINA                   : "China",
+            setPublishChannel       : (targetChannel) -> {//设置渠道
+                try {
+                    rootProject.extensions.add(publishChannel.KEY_TARGET_CHANNEL, targetChannel)
+                } catch(Throwable t) {
+                    t.printStackTrace()
+                }
+            }
+    ]
+
     libVersion = [
             multidexVersion       : '2.0.1',
             retrofitVersion       : '2.9.0',
