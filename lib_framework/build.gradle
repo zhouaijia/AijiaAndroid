@@ -34,11 +34,11 @@ android {
 }
 
 dependencies {
-    implementation rootProject.depsLibs.coreKtx
-    implementation rootProject.depsLibs.appcompat
-    implementation rootProject.depsLibs.gson
+    compileOnly rootProject.depsLibs.coreKtx
+    compileOnly rootProject.depsLibs.appcompat
+    compileOnly rootProject.depsLibs.gson
     implementation rootProject.depsLibs.recyclerview
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    compileOnly rootProject.depsLibs.tbssdk
+    compileOnly project(path: ':lib_webview')
 }

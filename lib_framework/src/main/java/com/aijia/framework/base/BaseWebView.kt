@@ -7,10 +7,10 @@ import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebSettings
 import com.aijia.framework.helper.AppHelper
-import com.tencent.smtt.sdk.WebView
+import com.aijia.webview.WebView
 
 /**
- * 腾讯X5WebView
+ * WebView基础封装
  */
 open class BaseWebView @JvmOverloads constructor(
     context: Context, attr: AttributeSet? = null
@@ -37,6 +37,7 @@ open class BaseWebView @JvmOverloads constructor(
     @SuppressLint("SetJavaScriptEnabled")
     private fun initSetting() {
         overScrollMode = View.OVER_SCROLL_ALWAYS
+
         settings.apply {
             defaultTextEncodingName = "utf-8"
             javaScriptEnabled = true
@@ -44,7 +45,7 @@ open class BaseWebView @JvmOverloads constructor(
             //适应手机屏幕
             useWideViewPort = true
             loadWithOverviewMode = true
-            layoutAlgorithm = com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+            layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
             //无限放大
             setSupportZoom(false)
             builtInZoomControls = false
@@ -60,7 +61,7 @@ open class BaseWebView @JvmOverloads constructor(
                 setWebContentsDebuggingEnabled(true)
             }
             // 不使用缓存
-            settings.mixedContentMode = WebSettings.LOAD_NO_CACHE
+            mixedContentMode = WebSettings.LOAD_NO_CACHE
             // 添加user agent
             //settings.setUserAgentString(settings.getUserAgentString() + " tuoduni-android-" + AppUtil.getVersionName(mContext.getApplicationContext()));
         }
