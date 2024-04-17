@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+//apply from: "prepareEnv.gradle" //开发、测试、正式环境
+
 android {
     namespace 'com.aijia.android'
     compileSdk rootProject.android.compileSdk
@@ -22,6 +24,14 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
+        ndk {
+            setAbiFilter()
+        }
+
+        /*manifestPlaceholders = [
+                BASE_URL_API : getApiBaseURL(),
+                BASE_URL_AUTH: getAuthBaseURL()
+        ]*/
     }
 
     signingConfigs {
@@ -70,6 +80,36 @@ android {
     }
 }
 
+/**
+ * 筛选so的CPU架构类型
+ * 若是发布到国内市场，则可以暂时不要64位的x86和mips，
+ * 若打的包是发不到GooglePlay的，则32位和64位的so都得有
+ */
+def setAbiFilter() {
+    def chinaChannelFilters = new String[]{'armeabi', 'armeabi-v7a', 'arm64-v8a', "x86", "mips"}
+
+    try {
+        def channel = rootProject.ext.publishChannel
+        switch (rootProject.extensions.getByName(channel.KEY_TARGET_CHANNEL)) {
+            case channel.CHINA:
+                android.defaultConfig.ndk.abiFilters chinaChannelFilters
+                break
+
+            case channel.GOOGLEPLAY:
+                android.defaultConfig.ndk.abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', "x86", "x86_64", "mips", "mips64"
+                break
+
+            default://默认是国内
+                android.defaultConfig.ndk.abiFilters chinaChannelFilters
+        }
+    } catch(Throwable t) {
+        // 开发时不通过命令行执行编译，“rootProject.extensions.getByName(channel.KEY_TARGET_CHANNEL)”代码
+        // 报错：找不到变量。这里需要设置默认值
+        android.defaultConfig.ndk.abiFilters chinaChannelFilters
+        t.printStackTrace()
+    }
+}
+
 dependencies {
     implementation rootProject.depsLibs.coreKtx
     implementation rootProject.depsLibs.appcompat
@@ -84,6 +124,7 @@ dependencies {
     kapt rootProject.depsLibs.arouterCompiler
 
     implementation rootProject.depsLibs.mmkv
+    implementation rootProject.depsLibs.gson
 
     implementation rootProject.depsLibs.refreshLayout
     implementation rootProject.depsLibs.refreshHeader
@@ -95,5 +136,6 @@ dependencies {
     implementation project(path: ':lib_framework')
     implementation project(path: ':lib_common')
     implementation project(path: ':lib_starter')
+    implementation project(path: ':lib_webview')
 
 }

@@ -1,0 +1,64 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+//开发环境
+def DEV_BASE_URL_AUTH = "http://dev.aijia.cn:6868"
+def DEV_BASE_URL_API = "http://dev.aijia.cn:6868"
+
+//测试环境
+def STAGE_BASE_URL_AUTH = "http://demo.aijia.cn:8686"
+def STAGE_BASE_URL_API = "http://demo.aijia.cn:8686"
+
+//生产环境
+def PROD_BASE_URL_AUTH = "https://aijia.com.cn"
+def PROD_BASE_URL_API = "https://aijia.com.cn"
+
+def authURL = DEV_BASE_URL_AUTH
+def apiURL = DEV_BASE_URL_API
+
+ext {
+    getAuthBaseURL = {
+        return authURL
+    }
+    getApiBaseURL = {
+        return apiURL
+    }
+}
+
+task prepareEnv() {
+    def flavor = getCurrentFlavor()
+    if (flavor == "stage") {
+        authURL = STAGE_BASE_URL_AUTH
+        apiURL = STAGE_BASE_URL_API
+    } else if (flavor == "prod") {
+        authURL = PROD_BASE_URL_AUTH
+        apiURL = PROD_BASE_URL_API
+    }
+}
+
+def getCurrentFlavor() {
+    Gradle gradle = getGradle()
+    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+    Pattern pattern
+
+    if (tskReqStr.contains("assemble")) {
+        pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+    } else if (tskReqStr.contains("bundle")) {
+        pattern = Pattern.compile("bundle(\\w+)(Release|Debug)")
+
+        //如果是bundle命令，则认为是发布到GooglePlay的
+        rootProject.ext.publishChannel.setPublishChannel(rootProject.ext.publishChannel.GOOGLEPLAY)
+    } else {
+        pattern = Pattern.compile("generate(\\w+)(Release|Debug)")
+    }
+
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find())
+        return matcher.group(1).toLowerCase()
+    else {
+        println "NO MATCH FOUND"
+        return ""
+    }
+}
