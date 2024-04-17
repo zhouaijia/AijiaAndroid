@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.aijia.webview'
+    compileSdk rootProject.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.android.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    compileOnly rootProject.depsLibs.coreKtx
+    compileOnly rootProject.depsLibs.gson
+    filterWebSdk()
+}
+
+/**
+ * 打包时，动态筛选Web SDK
+ *
+ * 不使用第三方Web（如腾讯X5）时不依赖相应的SDK，且编译时需要排除其相关代码，防止因找不到相关类而导致失败
+ * 开发环境下依赖所有需要的第三方Web SDK，便于开发调试
+ * @return
+ */
+def filterWebSdk() {
+    def java = android.sourceSets.main.java
+    String filePath = 'com/aijia/webview/view/'
+    def web = rootProject.ext.web
+
+    try {
+        def channel = rootProject.ext.publishChannel
+        String targetChannel = rootProject.extensions.getByName(channel.KEY_TARGET_CHANNEL)
+        println("---lib_webview----filterWebSdk----->targetChannel: "+targetChannel+", defWebView: "+web.defWebView)
+
+        switch (targetChannel) {
+            case channel.CHINA:
+                //若是发不到国内应用市场，则还需判断默认配置的是X5还是原生的WebView
+                if (web.defWebView == web.X5) {
+                    dependencies.compileOnly rootProject.depsLibs.tbssdk
+                } else {
+                    //如果app中没有使用X5 WebView，则移除其相关代码
+                    java.exclude "$filePath$web.codeX5"
+                }
+                break
+
+            case channel.GOOGLEPLAY:
+                //若是发布到GooglePlay，则使用原生的WebView，无需导入其它SDK
+                java.exclude "$filePath$web.codeX5" //移除X5 WebView相关代码
+                break
+
+            default:
+                if (web.defWebView == web.X5) {
+                    dependencies.compileOnly rootProject.depsLibs.tbssdk
+                } else {
+                    java.exclude "$filePath$web.codeX5"
+                }
+                break
+        }
+    } catch(Throwable t) {
+        // 开发时不通过命令行执行编译，“rootProject.extensions.getByName(channel.KEY_TARGET_CHANNEL)”代码
+        // 会报错：找不到变量，所以这里需要指定默认的WebView以便能够正常编译执行
+        if (web.defWebView == web.X5) {
+            dependencies.compileOnly rootProject.depsLibs.tbssdk
+        } else {
+            java.exclude "$filePath$web.codeX5"
+        }
+        t.printStackTrace()
+    }
+}
