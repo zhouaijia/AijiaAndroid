@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/more_dialog_layer_super_res_selected_ic" android:state_selected="true" />
+    <item android:drawable="@drawable/more_dialog_layer_super_res_ic" />
+</selector>

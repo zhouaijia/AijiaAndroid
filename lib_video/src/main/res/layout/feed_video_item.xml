@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="#FFFFFF"
+    android:elevation="1dp"
+    android:orientation="vertical">
+
+    <include layout="@layout/feed_video_item_header" />
+
+    <com.aijia.video.player.playback.widgets.RatioFrameLayout
+        android:id="@+id/videoViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ratio="1.7777777"
+        app:ratioMode="width">
+
+        <!-- FrameLayout is holder Layout for toggle full screen -->
+        <com.aijia.video.player.playback.VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ratio="1.7777777"
+            app:ratioMode="width" />
+
+    </com.aijia.video.player.playback.widgets.RatioFrameLayout>
+
+    <include layout="@layout/feed_video_item_footer" />
+
+</LinearLayout>
